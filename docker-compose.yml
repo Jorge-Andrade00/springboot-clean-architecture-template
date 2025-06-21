@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin      # DB USER
+      POSTGRES_PASSWORD: admin  # DB PASSWORD
+      POSTGRES_DB: mydb         # DB NAME
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # DB data persistency
+
+  app:  # SPRING BOOT APP
+    build: .  # USE DOCKERFILE IN ROOT
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydb
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+volumes:
+  pgdata:
