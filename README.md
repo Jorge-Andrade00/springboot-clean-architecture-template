@@ -14,39 +14,7 @@ A ready-to-use Spring Boot template following Clean Architecture principles. Thi
 
 ## Project Structure
 
-```
-src
-└── main
-├── java
-│ └── com
-│ └── example
-│ ├── ms_users_java
-│ │ ├── MsUsersJavaApplication.java
-│ │
-│ ├── domain
-│ │ └── user
-│ │ ├── model
-│ │ ├── repository
-│ │ └── service
-│ │
-│ ├── infrastructure
-│ │ ├── config
-│ │ └── persistence
-│ │ ├── entity
-│ │ ├── mapper
-│ │ └── repository
-│ │
-│ ├── application
-│ │ └── user
-│ │ ├── controller
-│ │ └── dto
-│ │
-│ └── shared
-│
-└── resources
-├── application.properties
-└── ...
-```
+![Project Structure](docs/structure.jpeg)
 
 ## Prerequisites
 
