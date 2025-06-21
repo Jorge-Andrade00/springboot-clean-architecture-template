@@ -5,6 +5,8 @@ import com.example.ms_users_java.domain.user.model.User;
 import com.example.ms_users_java.domain.user.service.CreateUserService;
 import com.example.ms_users_java.domain.user.service.FindAllUsersService;
 import com.example.ms_users_java.shared.response.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Tag(name = "Users", description = "Operations related to users")
 public class UserController {
     private final CreateUserService createUserService;
     private final FindAllUsersService findAllUsersService;
@@ -25,6 +28,7 @@ public class UserController {
 
     // Define endpoints here, e.g., for creating a user
 
+    @Operation(summary = "Get all users", description = "Retrieve a list of all users")
     @GetMapping
     public ResponseEntity<ApiResponse<List<User>>> getAllUsers() {
         List<User> users = findAllUsersService.execute();
@@ -34,6 +38,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @Operation(summary = "Create a new user", description = "Create a new user with the provided details")
     @PostMapping
     public ResponseEntity<ApiResponse<User>> createUser(@RequestBody CreateUserRequest request) {
         User createdUser = createUserService.execute(request);

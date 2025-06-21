@@ -2,7 +2,8 @@
 
 # Spring Boot Clean Architecture Template
 
-A ready-to-use Spring Boot template following Clean Architecture principles. This template provides a structured foundation for your Java projects with clear separation of concerns.
+A ready-to-use Spring Boot template following Clean Architecture principles. This template provides a structured
+foundation for your Java projects with clear separation of concerns.
 
 ## Tech Stack
 
@@ -36,11 +37,18 @@ A ready-to-use Spring Boot template following Clean Architecture principles. Thi
 4. Access the application at `http://localhost:8080`.
 
 ## Makefile Commands
+
 - `make build`: Build the application.
 - `make start`: Start the application.
 - `make down`: Stop the application.
 - `make clean`: Stop and remove containers, networks, volumes, and orphaned containers.
 - `make help`: Display help information for available commands.
 
+## OpenAPI Documentation
+
+- The OpenAPI documentation is available at `http://localhost:8080/api/docs`.
+- ![Swagger](docs/swagger.jpeg)
+
 ## Author
+
 - [@jorge-andrade00](https://github.com/Jorge-Andrade00)
