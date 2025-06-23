@@ -26,15 +26,23 @@ foundation for your Java projects with clear separation of concerns.
 1. Clone this repository:
    ```bash
    git clone https://github.com/your-username/springboot-clean-architecture-template.git
+    ```
 2. Navigate to the project directory:
    ```bash
    cd springboot-clean-architecture-template
    ```
-3. Build and run the application using Make commands:
+3. Copy the environment configuration file:
+   ```bash
+   cp .env.example .env
+   ```
+
+   You can now edit the .env file with your custom configuration (e.g., database credentials, port, JWT secret).
+
+4. Build and run the application using Make commands:
    ```bash
    make build
    ```
-4. Access the application at `http://localhost:8080`.
+5. Access the application at `http://localhost:8080`.
 
 ## Makefile Commands
 
