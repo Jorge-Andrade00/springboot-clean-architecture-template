@@ -16,8 +16,11 @@ import java.util.Map;
 
 @Component
 public class JwtUtil {
-    @Value("${SPRING_JWT_SECRET}")
+    @Value("${spring.jwt.secret}")
     private String jwtSecret;
+
+    @Value("${spring.application.name}")
+    private String issuer;
 
     public String generateToken(String email) {
         try {
@@ -30,7 +33,7 @@ public class JwtUtil {
             // Set token payload
             JWTClaimsSet payload = new JWTClaimsSet.Builder()
                     .subject(email)
-                    .issuer("ms_users_java") // TODO: Get from application properties or environment
+                    .issuer(issuer)
                     .expirationTime(
                             new java.util.Date(System.currentTimeMillis() + 3600000) // 1 hour expiration
                     )

@@ -1,29 +1,33 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: admin      # DB USER
-      POSTGRES_PASSWORD: admin  # DB PASSWORD
-      POSTGRES_DB: mydb         # DB NAME
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data  # DB data persistency
+      - pgdata:/var/lib/postgresql/data
 
-  app: # SPRING BOOT APP
-    build: .  # USE DOCKERFILE IN ROOT
+  app:
+    build: .
     depends_on:
       - postgres
+    env_file:
+      - .env
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydb
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: admin
-      SPRING_JPA_HIBERNATE_DDL-AUTO: update
-      SPRING_JWT_SECRET: f6a0d3c5be721f6a8b9321e45a39bfe3d1c4e9b8aaf6db842b28c9fca1d3b602
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      SPRING_JWT_SECRET: ${SPRING_JWT_SECRET}
+      APP_NAME: ${APP_NAME}
+      APP_PORT: ${APP_PORT}
     ports:
-      - "8080:8080"
+      - "${APP_PORT:-8080}:${APP_PORT:-8080}"
     restart: on-failure
 
 volumes:
