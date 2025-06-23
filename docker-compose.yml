@@ -12,7 +12,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data  # DB data persistency
 
-  app:  # SPRING BOOT APP
+  app: # SPRING BOOT APP
     build: .  # USE DOCKERFILE IN ROOT
     depends_on:
       - postgres
@@ -21,6 +21,7 @@ services:
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
       SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      SPRING_JWT_SECRET: f6a0d3c5be721f6a8b9321e45a39bfe3d1c4e9b8aaf6db842b28c9fca1d3b602
     ports:
       - "8080:8080"
     restart: on-failure
