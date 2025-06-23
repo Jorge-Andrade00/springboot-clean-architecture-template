@@ -8,7 +8,6 @@ import com.example.ms_users_java.domain.user.service.FindAllUsersService;
 import com.example.ms_users_java.domain.user.service.FindUserByEmail;
 import com.example.ms_users_java.domain.user.service.GenerateToken;
 import com.example.ms_users_java.shared.response.ApiResponse;
-import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -72,7 +71,7 @@ public class UserController {
 
     @Operation(summary = "Generate token for user", description = "Generate a token for the user with the provided email and password")
     @PostMapping("/token")
-    public ResponseEntity<ApiResponse<String>> generateToken(@RequestBody AuthRequest request) throws JOSEException {
+    public ResponseEntity<ApiResponse<String>> generateToken(@RequestBody AuthRequest request) {
         String token = generateToken.execute(request);
 
         ApiResponse<String> response = new ApiResponse<>("Token generated successfully", token);

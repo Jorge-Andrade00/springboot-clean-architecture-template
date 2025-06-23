@@ -2,6 +2,8 @@ package com.example.ms_users_java.domain.user.service;
 
 import com.example.ms_users_java.domain.user.model.User;
 import com.example.ms_users_java.domain.user.repository.UserRepository;
+import com.example.ms_users_java.shared.exception.AppException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,7 +21,7 @@ public class FindUserByEmail {
         Optional<User> user = userRepository.findByEmail(email);
 
         if (user.isEmpty()) {
-            throw new IllegalArgumentException("User with this email does not exist");
+            throw new AppException("User not found", HttpStatus.NOT_FOUND);
         }
 
         // Return the user if found
